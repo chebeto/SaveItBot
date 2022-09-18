@@ -1,0 +1,22 @@
+{
+  "name": "saveit-bot",
+  "version": "1.0.0",
+  "description": "A simple bot that forwards as DM any message from a Discord server when you react with the '📋' emoji",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "save, bot, discord, direct, messages, read, later"
+  ],
+  "author": "@el_chebs",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.3.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
