@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const baseURL = 'https://discord.com/channels/'
 const { discord_token } = process.env
-const { Client, GatewayIntentBits, Partials, EmbedBuilder, userMention, memberNicknameMention, channelMention, } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, EmbedBuilder } = require('discord.js');
 const keepAlive = require("./server");
 const client = new Client({ 
     intents: [ GatewayIntentBits.Guilds,
@@ -29,6 +29,13 @@ client.on('messageReactionAdd', async (reaction, user) => {
         let guild = reaction.message.guildId;
         let channel = reaction.message.channelId;
         let message = reaction.message.id;
+        const farewell = [
+                        'Saludos, viejo sabroso', 
+                        'Adios, viejo cochino',
+                        'Hasta la vista, baby',
+                        'Adios, vaquero',
+                    ]
+        const randomizer = Math.floor(Math.random() * farewell.length);
 		try {
             await reaction.fetch();
             let embed = new EmbedBuilder()
@@ -40,7 +47,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             .setDescription(`Aquí tienes el mensaje: '${reaction.message.content}', fue compartido por @${reaction.message.author.username} en el canal #${reaction.message.channel.name}`)
             .setURL(baseURL + guild + '/' + channel + '/' + message)
             .setTimestamp()
-	        .setFooter({ text: 'Saludos, viejo sabroso'});
+	        .setFooter({ text: farewell[randomizer]});
 
             user.send({ embeds: [embed] })
 		} catch (error) {
