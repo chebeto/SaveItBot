@@ -16,7 +16,7 @@ server.all('/', (req, res)=>{
 
 function keepAlive(){
 
-   server.listen(3000, ()=>{console.log("Server is online!")});
+   server.listen(3000, ()=>{console.log("Server is online! 🥳")});
 
 }
 

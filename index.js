@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const baseURL = 'https://discord.com/channels/'
 const { discord_token } = process.env
- const { Client, GatewayIntentBits, Partials, EmbedBuilder, DMChannel } = require('discord.js');
+  const { Client, GatewayIntentBits, Partials, EmbedBuilder, DMChannel } = require('discord.js');
 const keepAlive = require("./server");
 const client = new Client({ 
     intents: [ GatewayIntentBits.Guilds,
