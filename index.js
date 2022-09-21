@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const baseURL = 'https://discord.com/channels/'
 const { discord_token } = process.env
-const { Client, GatewayIntentBits, Partials, EmbedBuilder } = require('discord.js');
+  const { Client, GatewayIntentBits, Partials, EmbedBuilder, DMChannel } = require('discord.js');
 const keepAlive = require("./server");
 const client = new Client({ 
     intents: [ GatewayIntentBits.Guilds,
@@ -12,7 +12,7 @@ const client = new Client({
                GatewayIntentBits.GuildMessageReactions,
                GatewayIntentBits.GuildEmojisAndStickers,
                GatewayIntentBits.DirectMessages,
-               GatewayIntentBits.DirectMessageReactions
+               GatewayIntentBits.DirectMessageReactions,
             ],
     partials: [ Partials.Message, 
                 Partials.Channel, 
@@ -54,12 +54,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 			console.error('Algo salió mal obteniendo el mensaje:', error);
 			return;
 		}
-	}
-    
-    // Now the message has been cached and is fully available
-	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
-	// The reaction is now also fully available and the properties will be reflected accurately:
-	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
+	}  
 });
 
 keepAlive();
