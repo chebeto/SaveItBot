@@ -25,7 +25,7 @@ client.on('ready', ()=> {
     console.info('Bot succesfully connected 🥳');
 });
 
-client.on('messageReactionAdd', async (reaction, user, message) => {
+client.on('messageReactionAdd', async (reaction, user) => {
 
     //SECCIÓN PARA GUARDADO DEL MENSAJE
 
@@ -61,13 +61,16 @@ client.on('messageReactionAdd', async (reaction, user, message) => {
 			return;
 		}
 	}
-    
+});
+
+client.on('messageReactionAdd', (reaction) => {
+
     //SECCIÓN PARA GUARDADO DEL MENSAJE
 
     //Bloque para borrado de mensaje, se necesita que sea enviado por un Bot y emoji indicado
     if (reaction.message.author.bot && reaction.emoji.name === "✅") {
         try{
-            await reaction.fetch();
+            reaction.fetch();
             reaction.message.delete();
         } catch(error){
             console.error(error)
@@ -75,7 +78,7 @@ client.on('messageReactionAdd', async (reaction, user, message) => {
         }
 
     }
-});
+})
 
 // Servidor Express
 keepAlive();
