@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const baseURL = 'https://discord.com/channels/'
 const { discord_token } = process.env
-  const { Client, GatewayIntentBits, Partials, EmbedBuilder, DMChannel } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, EmbedBuilder, DMChannel } = require('discord.js');
 const keepAlive = require("./server");
 const client = new Client({ 
     intents: [ GatewayIntentBits.Guilds,
@@ -20,12 +20,18 @@ const client = new Client({
             ],
 });
 
+// Se realiza conexión
 client.on('ready', ()=> {
     console.info('Bot succesfully connected 🥳');
 });
 
-client.on('messageReactionAdd', async (reaction, user) => {
+client.on('messageReactionAdd', async (reaction, user, message) => {
+
+    //SECCIÓN PARA GUARDADO DEL MENSAJE
+
+    //Se valida que el emoji sea el indicado
     if(reaction.emoji.name === '📋'){
+        //Se obtiene información sobre servidor, canal y mensaje para referencia futura
         let guild = reaction.message.guildId;
         let channel = reaction.message.channelId;
         let message = reaction.message.id;
@@ -37,26 +43,42 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     ]
         const randomizer = Math.floor(Math.random() * farewell.length);
 		try {
+            //Se genera el mensaje a enviar
             await reaction.fetch();
             let embed = new EmbedBuilder()
             .setColor(0xEFBA2D)
-            .setAuthor({name: 'SaveIt_bot', 
-                        iconURL: 'https://st3.depositphotos.com/8950810/17657/v/600/depositphotos_176577870-stock-illustration-cute-smiling-funny-robot-chat.jpg', 
+            .setAuthor({name: 'SaveIt', 
                         url: 'https://twitter.com/el_chebs'})
-            .setTitle('📋 Ir al mensaje')
+            .setTitle('💬 Ir al mensaje')
             .setDescription(`Aquí tienes el mensaje: '${reaction.message.content}', fue compartido por @${reaction.message.author.username} en el canal #${reaction.message.channel.name}`)
             .setURL(baseURL + guild + '/' + channel + '/' + message)
             .setTimestamp()
 	        .setFooter({ text: farewell[randomizer]});
-
+            //Se envia el mensaje
             user.send({ embeds: [embed] })
 		} catch (error) {
 			console.error('Algo salió mal obteniendo el mensaje:', error);
 			return;
 		}
-	}  
+	}
+    
+    //SECCIÓN PARA GUARDADO DEL MENSAJE
+
+    //Bloque para borrado de mensaje, se necesita que sea enviado por un Bot y emoji indicado
+    if (reaction.message.author.bot && reaction.emoji.name === "✅") {
+        try{
+            await reaction.fetch();
+            reaction.message.delete();
+        } catch(error){
+            console.error(error)
+            return;
+        }
+
+    }
 });
 
+// Servidor Express
 keepAlive();
+
 // Conexión a Discord
 client.login(discord_token);
