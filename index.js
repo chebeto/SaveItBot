@@ -63,7 +63,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 	}
 });
 
-client.on('messageReactionAdd', (reaction) => {
+/* client.on('messageReactionAdd', (reaction) => {
 
     //SECCIÓN PARA GUARDADO DEL MENSAJE
 
@@ -78,7 +78,7 @@ client.on('messageReactionAdd', (reaction) => {
         }
 
     }
-})
+}) */
 
 // Servidor Express
 keepAlive();
