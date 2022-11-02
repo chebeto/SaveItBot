@@ -40,6 +40,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                         'Adios, viejo cochino',
                         'Hasta la vista, baby',
                         'Adios, vaquero',
+                        'My job here is done'
                     ]
         const randomizer = Math.floor(Math.random() * farewell.length);
 		try {
