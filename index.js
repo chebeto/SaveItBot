@@ -22,7 +22,7 @@ const client = new Client({
 
 // Se realiza conexión
 client.on('ready', ()=> {
-    console.info('Bot succesfully connected 🥳 ');
+    console.info('Bot succesfully connected 🥳');
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
@@ -63,23 +63,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
 		}
 	}
 });
-
-/* client.on('messageReactionAdd', (reaction) => {
-
-    //SECCIÓN PARA GUARDADO DEL MENSAJE
-
-    //Bloque para borrado de mensaje, se necesita que sea enviado por un Bot y emoji indicado
-    if (reaction.message.author.bot && reaction.emoji.name === "✅") {
-        try{
-            reaction.fetch();
-            reaction.message.delete();
-        } catch(error){
-            console.error(error)
-            return;
-        }
-
-    }
-}) */
 
 // Servidor Express
 keepAlive();
