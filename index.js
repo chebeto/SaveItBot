@@ -22,7 +22,7 @@ const client = new Client({
 
 // Se realiza conexión
 client.on('ready', ()=> {
-    console.info('🥳 Bot succesfully connected 🥳');
+    console.info('🥳 Bot succesfully connected 🥳 ');
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
