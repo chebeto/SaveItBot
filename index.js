@@ -39,8 +39,14 @@ client.on('messageReactionAdd', async (reaction, user) => {
                         'Saludos, viejo sabroso', 
                         'Adios, viejo cochino',
                         'Hasta la vista, baby',
-                        'Adios, vaquero',
-                        'My job here is done'
+                        'So long, partner.',
+                        'My job here is done',
+                        'See you later, alligator',
+                        'FREEEDOMMM',
+                        'Gentlemen, it has been a privilege playing with you tonight.',
+                        'Live long and prosper.',
+                        'So long, and thanks for all the fish!',
+                        'Goodbye, Vietnam!',
                     ]
         const randomizer = Math.floor(Math.random() * farewell.length);
 		try {
